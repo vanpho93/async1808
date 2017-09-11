@@ -31,7 +31,22 @@ function chia(a, b, cb) {
     });
 }
 
-// cong('4', 5, (err, kq) => {
-//     if (err) return console.log(err.message);
-//     console.log('Ket qua: ' + kq);
-// });
+// (a + b) * h / 2
+
+function tinhDienTich(a, b, h, cb) {
+    cong(a, b, (errCong, tong) => {
+        if (errCong) return cb(errCong);
+        nhan(+tong, h, (errNhan, tich) => {
+            if (errNhan) return cb(errNhan);
+            chia(+tich, 2, (errChia, kq) => {
+                if (errChia) return cb(errChia);
+                cb(null, kq);
+            });
+        });
+    });
+}
+
+tinhDienTich(4, 5, 6, (err, kq) => {
+    if (err) return console.log(err.message);
+    console.log(kq);
+})
