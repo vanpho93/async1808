@@ -42,7 +42,7 @@ function chiaPromise(a, b) {
 
 // (4 + 5) * 6 / 2
 
-Promise.all([congPromise(4, 5), chiaPromise(6, 2)])
+Promise.all([congPromise('4', 5).catch(err => 100), chiaPromise(6, 2)])
 .then(mang => nhanPromise(+mang[0], +mang[1]))
 .then(kq => console.log(kq))
 .catch(err => console.log(err.message));
