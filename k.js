@@ -40,18 +40,24 @@ function chiaPromise(a, b) {
     });
 }
 
-// (4 + 5) * 6 / 2
+//async await
 
-// Promise.all([congPromise('4', 5).catch(err => 100), chiaPromise(6, 2)])
-// .then(mang => nhanPromise(+mang[0], +mang[1]))
+// async function tinhDienTich(a, b, h) {
+//     try {
+//         const tong = await congPromise(a, b);
+//         const tich = await nhanPromise(+tong, h);
+//         const kq = await chiaPromise(+tich, 2);
+//         return Promise.resolve(kq);
+//     } catch(err) {
+//         // return Promise.reject(new Error('Loi tinh dien tich'));
+//         throw new Error('Loi');
+//     }
+// }
+
+// tinhDienTich(4, 5, 6)
 // .then(kq => console.log(kq))
 // .catch(err => console.log(err.message));
 
-// (4 + 5) * 6 / 2
-
-congPromise(4, 5)
-.then(tong => nhanPromise(tong, 6), () => 100)
-.then(tich => chiaPromise(+tich, 2))
-.then(kq => console.log(kq))
-.catch(err => console.log(err));
-
+Promise.race([congPromise(4, 5), nhanPromise('3', 2)])
+.then(x => console.log(x))
+.catch(err => console.log(err.message));
