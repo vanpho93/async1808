@@ -42,18 +42,7 @@ function chiaPromise(a, b) {
 
 // (4 + 5) * 6 / 2
 
-congPromise(4, 5)
-.then(tong => nhanPromise(+tong, 6))
-.then(tich => chiaPromise(+tich, 2))
-.then(kq => console.log(x))
-.catch(err => console.log(x));
-
-function tinhDienTich(a, b, h) {
-    return congPromise(a, b)
-    .then(tong => nhanPromise(+tong, h))
-    .then(tich => chiaPromise(+tich, 2))
-}
-
-// tinhDienTich(4, 5, 6)
-// .then(kq => console.log(kq))
-// .catch(err => console.log(err.message))
+Promise.all([congPromise(4, 5), chiaPromise(6, 2)])
+.then(mang => nhanPromise(+mang[0], +mang[1]))
+.then(kq => console.log(kq))
+.catch(err => console.log(err.message));
